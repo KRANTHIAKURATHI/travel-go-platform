@@ -69,8 +69,8 @@ export default function ManagerPackages() {
 
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 italic tracking-tight underline decoration-blue-500/30">Package Management</h2>
-            <p className="text-xs text-gray-400 font-bold mt-1 uppercase tracking-widest">Create and curate travel experiences</p>
+            <h2 className="font-playfair text-3xl font-bold text-gray-900 dark:text-gray-100 italic tracking-tight underline decoration-blue-500/30">Package Management</h2>
+            <p className="text-[10px] text-blue-500/80 font-black mt-1 uppercase tracking-[0.3em]">Create and curate premium travel experiences</p>
           </div>
           <Button size="sm" className="bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-500/20" onClick={() => open()}>
             <Plus size={16} className="mr-1" /> Create Package
@@ -82,14 +82,14 @@ export default function ManagerPackages() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-gray-50/50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800">
-                  <tr>{['Package Info','Destination','Days','Price','Slots','Featured','Status','Action'].map(h => <th key={h} className="px-5 py-4 text-left text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">{h}</th>)}</tr>
+                  <tr>{['Package Info','Destination','Days','Price','Slots','Featured','Status','Action'].map(h => <th key={h} className="px-5 py-4 text-left text-[10px] font-black text-blue-900/40 dark:text-blue-200/40 uppercase tracking-[0.2em] font-playfair">{h}</th>)}</tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                   {packages.map(pkg => (
                     <tr key={pkg.id} className={`hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors ${!pkg.is_active ? 'opacity-40 grayscale' : ''}`}>
                       <td className="px-5 py-4">
-                        <div className="font-bold text-gray-900 dark:text-gray-100 max-w-[200px] truncate">{pkg.title}</div>
-                        <div className="text-[10px] text-blue-500 font-bold uppercase">{pkg.category}</div>
+                        <div className="font-playfair text-lg font-bold text-gray-900 dark:text-gray-100 max-w-[200px] truncate">{pkg.title}</div>
+                        <div className="text-[10px] text-blue-500 font-bold uppercase tracking-widest">{pkg.category}</div>
                       </td>
                       <td className="px-5 py-4 text-gray-600 dark:text-gray-300 font-medium">{pkg.destination}</td>
                       <td className="px-5 py-4 text-gray-500 dark:text-gray-400 font-bold">{pkg.duration_days} Days</td>

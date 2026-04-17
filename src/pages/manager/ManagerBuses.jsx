@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { adminAPI } from '../../services/api'
 import ManagerLayout from '../../components/manager/ManagerLayout'
-import { Plus, Pencil, Trash2, Bus, X } from 'lucide-react'
+import { Plus, Pencil, Trash2, Bus, X, ExternalLink } from 'lucide-react'
 import { LoadingScreen, Alert, Button, Input, Select, Badge } from '../../components/common/UI'
 import { format } from 'date-fns'
 
@@ -69,7 +69,7 @@ export default function ManagerBuses() {
         {error && !modal && <Alert type="error" message={error} onClose={() => setError('')} />}
 
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-xl font-bold text-gray-900 dark:text-gray-100">Bus Management</h2>
+          <h2 className="font-playfair text-2xl font-bold text-gray-900 dark:text-gray-100 italic tracking-tight underline decoration-blue-500/30">Bus Management</h2>
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" onClick={() => { setModal({ type:'route' }); setRouteForm({ source:'', destination:'', distance_km:'', estimated_duration_minutes:'' }); setError('') }}>
               <Plus size={14}/> Add Route
@@ -85,15 +85,27 @@ export default function ManagerBuses() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-                  <tr>{['Bus Name','Number','Type','Route','Departure','Price','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-gray-500 dark:text-gray-400 upper tracking-wider">{h}</th>)}</tr>
+                  <tr>{['Bus Name','Number','Type','Route','Departure','Price','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-[10px] font-black text-blue-900/40 dark:text-blue-200/40 uppercase tracking-[0.2em] font-playfair">{h}</th>)}</tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                   {buses.map(bus => (
                     <tr key={bus.id} className="hover:bg-gray-50 dark:bg-gray-800/50 transition-colors">
-                      <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100">{bus.bus_name}</td>
+                      <td className="px-4 py-3 font-playfair font-bold text-gray-900 dark:text-gray-100">{bus.bus_name}</td>
                       <td className="px-4 py-3 text-gray-500 dark:text-gray-400 font-mono text-xs">{bus.bus_number}</td>
                       <td className="px-4 py-3"><Badge color="ocean">{bus.bus_type}</Badge></td>
-                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300 font-medium">{bus.routes?.source} → {bus.routes?.destination}</td>
+                      <td className="px-4 py-3">
+                         <div className="flex flex-col">
+                            <span className="text-gray-700 dark:text-gray-300 font-bold">{bus.routes?.source} → {bus.routes?.destination}</span>
+                            <a 
+                              href={`https://www.google.com/maps/dir/${bus.routes?.source}/${bus.routes?.destination}`} 
+                              target="_blank" 
+                              rel="noreferrer"
+                              className="text-[10px] text-blue-500 hover:text-blue-600 font-black uppercase flex items-center gap-1 mt-0.5 tracking-tighter transition-colors"
+                            >
+                              <ExternalLink size={10} /> View Route Map
+                            </a>
+                         </div>
+                      </td>
                       <td className="px-4 py-3 text-gray-500 dark:text-gray-400 text-xs">{bus.departure_time ? format(new Date(bus.departure_time), 'dd MMM, HH:mm') : '-'}</td>
                       <td className="px-4 py-3 font-bold text-blue-600">₹{parseFloat(bus.price_per_seat || 0).toLocaleString()}</td>
                       <td className="px-4 py-3">

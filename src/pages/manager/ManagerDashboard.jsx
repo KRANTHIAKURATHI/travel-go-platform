@@ -39,12 +39,12 @@ export default function ManagerDashboard() {
           <div>
             <div className="flex items-center gap-2 text-blue-600 mb-1">
               <ShieldCheck size={18} />
-              <span className="text-xs font-bold uppercase tracking-wider">Manager Access</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500/60">Manager Command Center</span>
             </div>
-            <h1 className="font-display text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
-              Hello, <span className="text-blue-600">{localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).name : 'Manager'}</span> 👋
+            <h1 className="font-playfair text-4xl font-black text-gray-900 dark:text-gray-100 tracking-tight">
+              Welcome back, <span className="text-blue-600 italic underline decoration-blue-500/20">{localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).name : 'Manager'}</span> ✨
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Manage your fleet, users and travel packages efficiently.</p>
+            <p className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-widest mt-2 ml-1">Optimizing fleet operations and travel experiences</p>
           </div>
           <div className="flex gap-3">
              <button onClick={() => navigate('/manager/buses')} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-500/25">
