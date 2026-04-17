@@ -67,6 +67,8 @@ export const adminAPI = {
   getAllBookings: () => api.get('/admin/bookings'),
   getAllPackageBookings: () => api.get('/admin/package-bookings'),
   getUsers: () => api.get('/admin/users'),
+  createUser: (d) => api.post('/admin/users', d),
+  updateUser: (id, d) => api.put(`/admin/user/${id}`, d),
 }
 
 export default api

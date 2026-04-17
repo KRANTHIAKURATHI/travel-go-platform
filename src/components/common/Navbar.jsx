@@ -77,6 +77,11 @@ export default function Navbar() {
                         <LayoutDashboard size={15} /> Admin Dashboard
                       </Link>
                     )}
+                    {user.role === 'manager' && (
+                      <Link to="/manager" className="flex items-center gap-3 px-4 py-2.5 text-sm text-blue-600 hover:bg-blue-50 dark:bg-blue-900/20 font-semibold transition-colors" onClick={() => setDropOpen(false)}>
+                        <LayoutDashboard size={15} /> Manager Portal
+                      </Link>
+                    )}
                     <hr className="my-1 border-gray-100 dark:border-gray-800" />
                     <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors">
                       <LogOut size={15} /> Logout
@@ -106,7 +111,8 @@ export default function Navbar() {
             <>
               <Link to="/bookings" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><Ticket size={15}/> My Bookings</Link>
               <Link to="/profile" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><User size={15}/> Profile</Link>
-              {user.role === 'admin' && <Link to="/admin" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><LayoutDashboard size={15}/> Admin</Link>}
+              {user.role === 'admin' && <Link to="/admin" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><LayoutDashboard size={15}/> Admin Dashboard</Link>}
+              {user.role === 'manager' && <Link to="/manager" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" onClick={() => setMenuOpen(false)}><LayoutDashboard size={15}/> Manager Portal</Link>}
               <button onClick={() => { handleLogout(); setMenuOpen(false) }} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20"><LogOut size={15}/> Logout</button>
             </>
           ) : (
