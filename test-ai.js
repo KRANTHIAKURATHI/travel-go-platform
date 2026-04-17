@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 async function run() {
   try {
     const model = genAI.getGenerativeModel({
-  model: "gemini-pro",
+  model: "gemini-1.5-flash",
   });
     const result = await model.generateContent("Hello");
     console.log("Success:", await result.response.text());
