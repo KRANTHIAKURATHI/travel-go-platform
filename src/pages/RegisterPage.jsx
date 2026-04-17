@@ -73,8 +73,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Right: registration form */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12"
-        style={{ background: 'linear-gradient(135deg,#f5f3ff 0%,#faf5ff 100%)' }}>
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-[#f5f3ff] dark:bg-[#0f0f12]">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="lg:hidden inline-flex w-14 h-14 rounded-2xl items-center justify-center shadow-lg mb-3"
@@ -91,10 +90,7 @@ export default function RegisterPage() {
 
             {/* Google */}
             <button onClick={loginWithGoogle}
-              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-2xl font-semibold text-gray-700 text-sm transition-all"
-              style={{ border: '2px solid #e5e7eb', background: 'white' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor='#a855f7'; e.currentTarget.style.background='#faf5ff' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor='#e5e7eb'; e.currentTarget.style.background='white' }}>
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-2xl font-semibold text-gray-700 dark:text-gray-200 text-sm transition-all border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-purple-400 dark:hover:border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-900/10">
               <GoogleIcon /> Sign up with Google
             </button>
 

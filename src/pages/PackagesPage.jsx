@@ -83,7 +83,8 @@ export default function PackagesPage() {
           <p className="text-white mb-6">Handcrafted experiences for every traveler</p>
           <div className="relative max-w-md mx-auto">
             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search destination or package name..." className="w-full pl-11 pr-4 py-3 rounded-xl text-gray-800 dark:text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 shadow" />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search destination or package name..." 
+              className="w-full pl-11 pr-4 py-3 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300 shadow shadow-purple/10" />
           </div>
         </div>
       </div>
@@ -94,7 +95,7 @@ export default function PackagesPage() {
           <SlidersHorizontal size={16} className="text-gray-400" />
           <div className="flex items-center gap-1.5 flex-wrap">
             {CATEGORIES.map(c => (
-              <button key={c} onClick={() => setCategory(c)} className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${category === c ? 'bg-purple-600 text-white shadow' : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100'}`}>
+              <button key={c} onClick={() => setCategory(c)} className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${category === c ? 'bg-purple-600 text-white shadow' : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}`}>
                 {CAT_LABELS[c]}
               </button>
             ))}
@@ -113,8 +114,8 @@ export default function PackagesPage() {
         {error && <Alert type="error" message={error} />}
         {loading ? <LoadingScreen /> : filtered.length === 0 ? (
           <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-            <MapPin size={48} className="mx-auto text-gray-200 mb-4" />
-            <h3 className="font-semibold text-gray-700">No packages found</h3>
+            <MapPin size={48} className="mx-auto text-gray-200 dark:text-gray-700 mb-4" />
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200">No packages found</h3>
             <p className="text-gray-400 text-sm mt-1">Try different filters</p>
           </div>
         ) : (

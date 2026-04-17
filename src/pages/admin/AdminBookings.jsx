@@ -49,7 +49,7 @@ export default function AdminBookings() {
                   <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <tr>{['Ref','User','Bus','Route','Seats','Date','Amount','Status'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-50">
+                  <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                     {busBookings.map(b => (
                       <tr key={b.id} className="hover:bg-gray-50 dark:bg-gray-800 transition-colors">
                         <td className="px-4 py-3 font-mono text-xs text-purple-600 font-semibold">{b.booking_ref}</td>
@@ -70,14 +70,14 @@ export default function AdminBookings() {
                   <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <tr>{['Ref','User','Package','Destination','Participants','Travel Date','Amount','Status'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-50">
+                  <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                     {pkgBookings.map(b => (
                       <tr key={b.id} className="hover:bg-gray-50 dark:bg-gray-800 transition-colors">
                         <td className="px-4 py-3 font-mono text-xs text-purple-600 font-semibold">{b.booking_ref}</td>
-                        <td className="px-4 py-3"><div className="font-medium">{b.users?.name}</div><div className="text-xs text-gray-400">{b.users?.email}</div></td>
-                        <td className="px-4 py-3 text-gray-700 max-w-[150px] truncate">{b.tour_packages?.title}</td>
+                        <td className="px-4 py-3"><div className="font-medium text-gray-900 dark:text-gray-100">{b.users?.name}</div><div className="text-xs text-gray-400">{b.users?.email}</div></td>
+                        <td className="px-4 py-3 text-gray-700 dark:text-gray-300 max-w-[150px] truncate">{b.tour_packages?.title}</td>
                         <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{b.tour_packages?.destination}</td>
-                        <td className="px-4 py-3 text-center font-medium">{b.num_participants}</td>
+                        <td className="px-4 py-3 text-center font-medium text-gray-900 dark:text-gray-100">{b.num_participants}</td>
                         <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{b.travel_date}</td>
                         <td className="px-4 py-3 font-semibold text-green-600">₹{parseFloat(b.total_amount||0).toLocaleString()}</td>
                         <td className="px-4 py-3"><StatusBadge status={b.booking_status} /></td>

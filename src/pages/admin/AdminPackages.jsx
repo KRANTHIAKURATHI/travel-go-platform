@@ -79,7 +79,7 @@ export default function AdminPackages() {
                 <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                   <tr>{['Title','Destination','Days','Price','Category','Slots','Featured','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                 </thead>
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                   {packages.map(pkg => (
                     <tr key={pkg.id} className={`hover:bg-gray-50 dark:bg-gray-800 transition-colors ${!pkg.is_active ? 'opacity-50' : ''}`}>
                       <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100 max-w-[180px] truncate">{pkg.title}</td>
@@ -117,8 +117,8 @@ export default function AdminPackages() {
               <Input label="Package Title" value={form.title} onChange={e => setForm(p=>({...p,title:e.target.value}))} required />
               <Input label="Destination" value={form.destination} onChange={e => setForm(p=>({...p,destination:e.target.value}))} required />
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
+                <textarea value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400" />
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <Input label="Duration (days)" type="number" value={form.duration_days} onChange={e => setForm(p=>({...p,duration_days:e.target.value}))} required />
@@ -137,8 +137,8 @@ export default function AdminPackages() {
                 </Select>
                 <div className="flex items-end pb-1">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={form.is_featured} onChange={e => setForm(p=>({...p,is_featured:e.target.checked}))} className="w-4 h-4 accent-saffron-500" />
-                    <span className="text-sm font-medium text-gray-700">Mark as Featured</span>
+                    <input type="checkbox" checked={form.is_featured} onChange={e => setForm(p=>({...p,is_featured:e.target.checked}))} className="w-4 h-4 accent-purple-500" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Mark as Featured</span>
                   </label>
                 </div>
               </div>
@@ -147,12 +147,12 @@ export default function AdminPackages() {
                 <Input label="End Date" type="date" value={form.end_date} onChange={e => setForm(p=>({...p,end_date:e.target.value}))} />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Inclusions (one per line)</label>
-                <textarea value={form.inclusions} onChange={e => setForm(p=>({...p,inclusions:e.target.value}))} rows={3} placeholder="Hotel stay&#10;All meals&#10;Guide" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Inclusions (one per line)</label>
+                <textarea value={form.inclusions} onChange={e => setForm(p=>({...p,inclusions:e.target.value}))} rows={3} placeholder="Hotel stay&#10;All meals&#10;Guide" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Exclusions (one per line)</label>
-                <textarea value={form.exclusions} onChange={e => setForm(p=>({...p,exclusions:e.target.value}))} rows={2} placeholder="Flight tickets&#10;Personal expenses" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Exclusions (one per line)</label>
+                <textarea value={form.exclusions} onChange={e => setForm(p=>({...p,exclusions:e.target.value}))} rows={2} placeholder="Flight tickets&#10;Personal expenses" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-400" />
               </div>
               <div className="flex gap-3 pt-2">
                 <Button variant="secondary" className="flex-1" type="button" onClick={() => setModal(null)}>Cancel</Button>

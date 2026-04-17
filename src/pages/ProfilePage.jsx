@@ -36,7 +36,7 @@ export default function ProfilePage() {
             <p className="text-gray-500 dark:text-gray-400 text-sm">{user?.email}</p>
             <div className="flex items-center gap-1.5 mt-1.5">
               <Shield size={12} className="text-purple-600" />
-              <span className="text-xs font-semibold capitalize text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">{user?.role}</span>
+              <span className="text-xs font-semibold capitalize text-purple-700 bg-purple-100 dark:bg-purple-900/40 dark:text-purple-300 px-2 py-0.5 rounded-full">{user?.role}</span>
             </div>
           </div>
         </Card>
@@ -51,10 +51,10 @@ export default function ProfilePage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input label="Full Name" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required />
             <div className="space-y-1">
-              <label className="block text-sm font-medium text-gray-700">Email Address</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
               <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 text-sm text-gray-500 dark:text-gray-400">
                 <Mail size={15} className="text-gray-400" /> {user?.email}
-                <span className="ml-auto text-xs bg-gray-200 px-2 py-0.5 rounded-full">Cannot change</span>
+                <span className="ml-auto text-xs bg-gray-200 dark:bg-gray-700 px-2 py-0.5 rounded-full">Cannot change</span>
               </div>
             </div>
             <Input label="Phone Number" type="tel" value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} placeholder="+91 9800000000" />
@@ -68,17 +68,17 @@ export default function ProfilePage() {
         <Card className="p-6 mt-5">
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Account Information</h3>
           <div className="space-y-3 text-sm">
-            <div className="flex justify-between py-2 border-b border-gray-50">
+            <div className="flex justify-between py-2 border-b border-gray-50 dark:border-gray-800">
               <span className="text-gray-500 dark:text-gray-400">Account Type</span>
-              <span className="font-semibold capitalize">{user?.role}</span>
+              <span className="font-semibold capitalize text-gray-900 dark:text-gray-100">{user?.role}</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-gray-50">
+            <div className="flex justify-between py-2 border-b border-gray-50 dark:border-gray-800">
               <span className="text-gray-500 dark:text-gray-400">Login Method</span>
-              <span className="font-semibold">Email & Password</span>
+              <span className="font-semibold text-gray-900 dark:text-gray-100">Email & Password</span>
             </div>
             <div className="flex justify-between py-2">
               <span className="text-gray-500 dark:text-gray-400">Account Status</span>
-              <span className="font-semibold text-green-600">Active</span>
+              <span className="font-semibold text-green-600 dark:text-green-500">Active</span>
             </div>
           </div>
         </Card>

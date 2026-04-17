@@ -98,8 +98,7 @@ export default function LoginPage() {
       </div>
 
       {/* ── Right: login form ── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12"
-        style={{ background: 'linear-gradient(135deg,#f5f3ff 0%,#faf5ff 100%)' }}>
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-[#f5f3ff] dark:bg-[#0f0f12]">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="lg:hidden text-center mb-8">
@@ -126,10 +125,7 @@ export default function LoginPage() {
             {/* Google OAuth Button */}
             <button
               onClick={loginWithGoogle}
-              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-2xl font-semibold text-gray-700 text-sm transition-all"
-              style={{ border: '2px solid #e5e7eb', background: 'white' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor='#a855f7'; e.currentTarget.style.background='#faf5ff' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor='#e5e7eb'; e.currentTarget.style.background='white' }}
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-2xl font-semibold text-gray-700 dark:text-gray-200 text-sm transition-all border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-gray-700"
             >
               <GoogleIcon />
               Continue with Google
@@ -153,7 +149,7 @@ export default function LoginPage() {
                 required
               />
               <div className="space-y-1">
-                <label className="block text-sm font-medium text-gray-700">Password</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Password</label>
                 <div className="relative">
                   <input
                     type={show ? 'text' : 'password'}
@@ -161,7 +157,7 @@ export default function LoginPage() {
                     value={form.password}
                     onChange={e => setForm(p => ({...p, password: e.target.value}))}
                     required
-                    className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 text-sm transition-all"
+                    className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 text-sm transition-all"
                   />
                   <button type="button" onClick={() => setShow(!show)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-colors">

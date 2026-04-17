@@ -14,8 +14,8 @@ function BusBookingCard({ booking, onCancel }) {
     <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-5">
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0">
-            <Bus size={20} className="text-purple-600" />
+          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0 shadow-purple">
+            <Bus size={20} className="text-white" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-gray-100">{bus?.bus_name || 'Bus Booking'}</h3>
@@ -125,11 +125,11 @@ export default function BookingHistoryPage() {
         <div className="flex gap-1 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-1 w-fit mb-6">
           <button onClick={() => setTab('bus')} className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all ${tab === 'bus' ? 'bg-purple-600 text-white shadow' : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:text-gray-200'}`}>
             <Bus size={15}/> Bus Tickets
-            <span className={`text-xs rounded-full px-1.5 py-0.5 ${tab === 'bus' ? 'bg-white dark:bg-gray-900/20 text-white' : 'bg-gray-100 text-gray-500 dark:text-gray-400'}`}>{busBookings.length}</span>
+            <span className={`text-xs rounded-full px-1.5 py-0.5 ${tab === 'bus' ? 'bg-white text-purple-600 dark:bg-gray-900/20 dark:text-white' : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'}`}>{busBookings.length}</span>
           </button>
           <button onClick={() => setTab('pkg')} className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all ${tab === 'pkg' ? 'bg-purple-600 text-white shadow' : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:text-gray-200'}`}>
             <MapPin size={15}/> Tour Packages
-            <span className={`text-xs rounded-full px-1.5 py-0.5 ${tab === 'pkg' ? 'bg-white dark:bg-gray-900/20 text-white' : 'bg-gray-100 text-gray-500 dark:text-gray-400'}`}>{pkgBookings.length}</span>
+            <span className={`text-xs rounded-full px-1.5 py-0.5 ${tab === 'pkg' ? 'bg-white text-purple-600 dark:bg-gray-900/20 dark:text-white' : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'}`}>{pkgBookings.length}</span>
           </button>
         </div>
 
@@ -137,8 +137,8 @@ export default function BookingHistoryPage() {
           <>
             {tab === 'bus' && (
               busBookings.length === 0 ? (
-                <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-                  <Bus size={48} className="mx-auto text-gray-200 mb-3" />
+                <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 animate-fade-up">
+                  <Bus size={48} className="mx-auto text-gray-200 dark:text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-600 dark:text-gray-300">No bus bookings yet</h3>
                   <p className="text-gray-400 text-sm mt-1 mb-4">Book a bus ticket to see it here</p>
                   <Button onClick={() => window.location.href='/buses'}>Search Buses</Button>
@@ -151,8 +151,8 @@ export default function BookingHistoryPage() {
             )}
             {tab === 'pkg' && (
               pkgBookings.length === 0 ? (
-                <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-                  <MapPin size={48} className="mx-auto text-gray-200 mb-3" />
+                <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 animate-fade-up">
+                  <MapPin size={48} className="mx-auto text-gray-200 dark:text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-600 dark:text-gray-300">No tour bookings yet</h3>
                   <p className="text-gray-400 text-sm mt-1 mb-4">Explore amazing tour packages</p>
                   <Button variant="ocean" onClick={() => window.location.href='/packages'}>Browse Packages</Button>

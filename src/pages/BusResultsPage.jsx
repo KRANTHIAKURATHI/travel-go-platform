@@ -18,8 +18,8 @@ function BusCard({ bus, onSelect }) {
     <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all p-5 flex flex-col md:flex-row items-start md:items-center gap-4">
       <div className="flex-1 min-w-0">
         <div className="flex items-start gap-3 mb-3">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0">
-            <Bus size={20} className="text-purple-600" />
+          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0 shadow-purple">
+            <Bus size={20} className="text-white" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-gray-100">{bus.bus_name}</h3>
@@ -126,8 +126,8 @@ export default function BusResultsPage() {
 
         {loading ? <LoadingScreen /> : error ? <Alert type="error" message={error} /> : filtered.length === 0 ? (
           <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-            <Bus size={48} className="mx-auto text-gray-200 mb-4" />
-            <h3 className="font-semibold text-gray-700 mb-1">No buses found</h3>
+            <Bus size={48} className="mx-auto text-gray-200 dark:text-gray-700 mb-4" />
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-1">No buses found</h3>
             <p className="text-gray-400 text-sm">Try a different route or date</p>
           </div>
         ) : (

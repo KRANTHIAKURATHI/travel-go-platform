@@ -10,7 +10,7 @@ export function LoadingScreen() {
     <div className="flex items-center justify-center min-h-64">
       <div className="text-center">
         <Spinner size="lg" className="mx-auto mb-3" />
-        <p className="text-gray-400 text-sm">Loading...</p>
+        <p className="text-gray-400 dark:text-gray-500 text-sm font-medium">Loading...</p>
       </div>
     </div>
   )
@@ -19,9 +19,9 @@ export function LoadingScreen() {
 export function Alert({ type = 'error', message, onClose }) {
   if (!message) return null
   const styles = {
-    error:   'bg-rose-50 border-rose-200 text-rose-700',
-    success: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-    info:    'bg-purple-50 dark:bg-purple-900/20 border-purple-200 text-purple-700',
+    error:   'bg-rose-50 dark:bg-rose-900/20 border-rose-200 dark:border-rose-900/30 text-rose-700 dark:text-rose-400',
+    success: 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-900/30 text-emerald-700 dark:text-emerald-400',
+    info:    'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-900/30 text-purple-700 dark:text-purple-400',
   }
   const Icon = type === 'success' ? CheckCircle : AlertCircle
   return (
@@ -35,12 +35,14 @@ export function Alert({ type = 'error', message, onClose }) {
 
 export function Badge({ children, color = 'purple' }) {
   const colors = {
-    purple:  'bg-purple-100 text-purple-700',
-    violet:  'bg-violet-100 text-violet-700',
-    green:   'bg-emerald-100 text-emerald-700',
-    red:     'bg-rose-100 text-rose-700',
-    gray:    'bg-gray-100 text-gray-600 dark:text-gray-300',
-    amber:   'bg-amber-100 text-amber-700',
+    purple:  'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300',
+    violet:  'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300',
+    green:   'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300',
+    red:     'bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300',
+    gray:    'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400',
+    amber:   'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
+    saffron: 'bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300',
+    ocean:   'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
   }
   return <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${colors[color] || colors.purple}`}>{children}</span>
 }
@@ -48,11 +50,12 @@ export function Badge({ children, color = 'purple' }) {
 export function Button({ children, variant = 'primary', size = 'md', loading, className = '', ...props }) {
   const variants = {
     primary:   'bg-purple-600 hover:bg-purple-700 text-white shadow-purple',
-    secondary: 'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700',
+    secondary: 'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700',
     violet:    'bg-violet-600 hover:bg-violet-700 text-white',
-    ghost:     'text-purple-600 hover:bg-purple-50',
+    ghost:     'text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 dark:text-purple-400',
     danger:    'bg-rose-500 hover:bg-rose-600 text-white',
-    outline:   'border-2 border-purple-500 text-purple-600 hover:bg-purple-50',
+    outline:   'border-2 border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 dark:text-purple-400',
+    ocean:     'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20',
   }
   const sizes = { sm: 'px-3 py-1.5 text-sm', md: 'px-5 py-2.5 text-sm', lg: 'px-7 py-3.5 text-base' }
   return (
@@ -67,7 +70,7 @@ export function Input({ label, error, className = '', ...props }) {
   return (
     <div className="space-y-1">
       {label && <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>}
-      <input className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-rose-400 bg-rose-50' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900'} focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition text-gray-800 dark:text-gray-200 placeholder:text-gray-400 dark:[color-scheme:dark] text-sm ${className}`} {...props} />
+      <input className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-rose-400 bg-rose-50' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900'} focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition text-gray-800 dark:text-gray-200 placeholder:text-gray-400 text-sm ${className}`} {...props} />
       {error && <p className="text-xs text-rose-500">{error}</p>}
     </div>
   )

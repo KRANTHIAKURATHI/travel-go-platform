@@ -87,7 +87,7 @@ export default function AdminBuses() {
                 <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                   <tr>{['Bus Name','Number','Type','Route','Departure','Price','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                 </thead>
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                   {buses.map(bus => (
                     <tr key={bus.id} className="hover:bg-gray-50 dark:bg-gray-800 transition-colors">
                       <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">{bus.bus_name}</td>

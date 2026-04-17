@@ -18,14 +18,14 @@ export default function AdminLayout({ children, title }) {
   const isActive = (to, exact) => exact ? location.pathname === to : location.pathname === to || (to !== '/admin' && location.pathname.startsWith(to))
 
   return (
-    <div className="min-h-screen flex" style={{ background:'#f5f3ff' }}>
+    <div className="min-h-screen flex bg-[#f5f3ff] dark:bg-[#0f172a]">
       {/* Sidebar */}
       <aside className="w-64 shrink-0 flex flex-col" style={{ background:'linear-gradient(180deg,#2e1065 0%,#4c1d95 50%,#6d28d9 100%)' }}>
         {/* Logo */}
         <div className="p-5 border-b border-purple-400/20">
           <Link to="/" className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-white dark:bg-gray-900/15 flex items-center justify-center border border-white/20">
-              <Ticket size={18} className="text-white" />
+              <Ticket size={18} className="text-purple-600 dark:text-white" />
             </div>
             <div>
               <div className="font-bold text-white text-sm">TravelGo</div>
@@ -51,7 +51,7 @@ export default function AdminLayout({ children, title }) {
         <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
           <p className="text-purple-400 text-xs font-semibold uppercase tracking-wider px-3 py-2">Navigation</p>
           {NAV.map(({ to, icon:Icon, label, exact }) => (
-            <Link key={to} to={to} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive(to,exact) ? 'bg-white dark:bg-gray-900/20 text-white shadow-sm border border-white/10' : 'text-purple-200 hover:bg-white dark:bg-gray-900/10 hover:text-white'}`}>
+            <Link key={to} to={to} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive(to,exact) ? 'bg-white text-purple-700 dark:bg-white/10 dark:text-white shadow-sm border border-white/10' : 'text-purple-200 hover:bg-white/10 hover:text-white'}`}>
               <Icon size={16} /> {label}
             </Link>
           ))}
@@ -69,11 +69,11 @@ export default function AdminLayout({ children, title }) {
       <div className="flex-1 min-w-0 flex flex-col">
         <header className="bg-white dark:bg-gray-900 border-b border-purple-100 dark:border-purple-900/40 px-6 py-4 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-400">Admin</span>
-            <ChevronRight size={14} className="text-gray-300" />
+            <span className="text-gray-400 dark:text-gray-500">Admin</span>
+            <ChevronRight size={14} className="text-gray-300 dark:text-gray-600" />
             <span className="font-semibold text-gray-800 dark:text-gray-200">{title}</span>
           </div>
-          <Link to="/" className="text-xs text-purple-600 hover:text-purple-700 font-medium">← Back to Site</Link>
+          <Link to="/" className="text-xs text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium">← Back to Site</Link>
         </header>
         <main className="flex-1 p-6 overflow-auto">
           {children}

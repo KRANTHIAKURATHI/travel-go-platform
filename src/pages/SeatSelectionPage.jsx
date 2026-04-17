@@ -69,9 +69,9 @@ export default function SeatSelectionPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-800 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 text-center">
-          <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle size={40} className="text-green-500" />
+        <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 text-center animate-fade-up">
+          <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle size={40} className="text-emerald-500 dark:text-emerald-400" />
           </div>
           <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">Booking Confirmed!</h2>
           <p className="text-gray-500 dark:text-gray-400 mb-6">Your bus ticket has been booked successfully</p>
@@ -103,8 +103,8 @@ export default function SeatSelectionPage() {
           </button>
           {bus && (
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
-                <Bus size={20} className="text-purple-600" />
+              <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shadow-purple">
+                <Bus size={20} className="text-white" />
               </div>
               <div>
                 <h1 className="font-display font-bold text-gray-900 dark:text-gray-100">{bus.bus_name} — {bus.routes?.source} → {bus.routes?.destination}</h1>
@@ -124,7 +124,11 @@ export default function SeatSelectionPage() {
 
               {/* Legend */}
               <div className="flex items-center gap-4 mb-5 text-xs">
-                {[['bg-green-100 border-green-400', 'Available'], ['bg-purple-600 border-purple-400', 'Selected'], ['bg-gray-100 border-gray-300', 'Booked']].map(([cls, label]) => (
+                {[
+                  ['bg-purple-50 dark:bg-purple-900/40 border-purple-200 dark:border-purple-800', 'Available'],
+                  ['bg-purple-600 border-purple-800', 'Selected'],
+                  ['bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700', 'Booked']
+                ].map(([cls, label]) => (
                   <div key={label} className="flex items-center gap-1.5">
                     <div className={`w-5 h-5 rounded-md border-2 ${cls}`} />
                     <span className="text-gray-500 dark:text-gray-400">{label}</span>
@@ -197,7 +201,7 @@ export default function SeatSelectionPage() {
                 <div className="flex justify-between text-base font-bold"><span>Total</span><span className="text-purple-600">₹{total.toLocaleString()}</span></div>
               </div>
             )}
-            <div className="mt-4 p-3 bg-green-50 rounded-xl text-xs text-green-700 flex items-start gap-2">
+            <div className="mt-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-xs text-emerald-700 dark:text-emerald-400 flex items-start gap-2">
               <CheckCircle size={14} className="mt-0.5 shrink-0" />
               Instant confirmation + simulated payment
             </div>

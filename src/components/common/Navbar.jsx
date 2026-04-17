@@ -66,10 +66,10 @@ export default function Navbar() {
                       <p className="text-xs text-gray-400">Signed in as</p>
                       <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 truncate">{user.email}</p>
                     </div>
-                    <Link to="/bookings" className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 dark:bg-purple-900/20 hover:text-purple-600 transition-colors" onClick={() => setDropOpen(false)}>
+                    <Link to="/bookings" className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:text-purple-600 transition-colors" onClick={() => setDropOpen(false)}>
                       <Ticket size={15} /> My Bookings
                     </Link>
-                    <Link to="/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 dark:bg-purple-900/20 hover:text-purple-600 transition-colors" onClick={() => setDropOpen(false)}>
+                    <Link to="/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:text-purple-600 transition-colors" onClick={() => setDropOpen(false)}>
                       <User size={15} /> Profile
                     </Link>
                     {user.role === 'admin' && (
@@ -78,7 +78,7 @@ export default function Navbar() {
                       </Link>
                     )}
                     <hr className="my-1 border-gray-100 dark:border-gray-800" />
-                    <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-rose-500 hover:bg-rose-50 transition-colors">
+                    <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors">
                       <LogOut size={15} /> Logout
                     </button>
                   </div>
@@ -104,10 +104,10 @@ export default function Navbar() {
           <Link to="/packages" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-purple-50 dark:bg-purple-900/20 hover:text-purple-600" onClick={() => setMenuOpen(false)}><MapPin size={15}/> Tour Packages</Link>
           {user ? (
             <>
-              <Link to="/bookings" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-purple-50" onClick={() => setMenuOpen(false)}><Ticket size={15}/> My Bookings</Link>
-              <Link to="/profile" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-purple-50" onClick={() => setMenuOpen(false)}><User size={15}/> Profile</Link>
-              {user.role === 'admin' && <Link to="/admin" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-600 hover:bg-purple-50" onClick={() => setMenuOpen(false)}><LayoutDashboard size={15}/> Admin</Link>}
-              <button onClick={() => { handleLogout(); setMenuOpen(false) }} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-rose-500"><LogOut size={15}/> Logout</button>
+              <Link to="/bookings" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><Ticket size={15}/> My Bookings</Link>
+              <Link to="/profile" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><User size={15}/> Profile</Link>
+              {user.role === 'admin' && <Link to="/admin" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20" onClick={() => setMenuOpen(false)}><LayoutDashboard size={15}/> Admin</Link>}
+              <button onClick={() => { handleLogout(); setMenuOpen(false) }} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20"><LogOut size={15}/> Logout</button>
             </>
           ) : (
             <div className="flex gap-2 pt-1">

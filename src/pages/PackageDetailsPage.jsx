@@ -44,9 +44,9 @@ export default function PackageDetailsPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-800 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 text-center">
-          <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle size={40} className="text-green-500" />
+        <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 text-center animate-fade-up">
+          <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle size={40} className="text-emerald-500 dark:text-emerald-400" />
           </div>
           <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">Tour Booked!</h2>
           <p className="text-gray-500 dark:text-gray-400 mb-6">Your tour package has been confirmed</p>
@@ -73,7 +73,7 @@ export default function PackageDetailsPage() {
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img src={img} alt={pkg.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <button onClick={() => navigate('/packages')} className="absolute top-4 left-4 bg-white dark:bg-gray-900/20 backdrop-blur text-white px-3 py-2 rounded-xl flex items-center gap-1.5 text-sm hover:bg-white dark:bg-gray-900/30 transition-colors">
+        <button onClick={() => navigate('/packages')} className="absolute top-4 left-4 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md text-white px-3 py-2 rounded-xl flex items-center gap-1.5 text-sm hover:bg-white/30 dark:hover:bg-gray-900/60 transition-all border border-white/10">
           <ArrowLeft size={15} /> Back
         </button>
         <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -161,8 +161,8 @@ export default function PackageDetailsPage() {
               <form onSubmit={handleBook} className="space-y-3">
                 {error && <Alert type="error" message={error} onClose={() => setError('')} />}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">No. of Participants</label>
-                  <select value={bookingForm.num_participants} onChange={e => setBookingForm(p => ({...p, num_participants: parseInt(e.target.value)}))} className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">No. of Participants</label>
+                  <select value={bookingForm.num_participants} onChange={e => setBookingForm(p => ({...p, num_participants: parseInt(e.target.value)}))} className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400">
                     {Array.from({length: Math.min(pkg.available_slots, 10)}, (_,i) => i+1).map(n => <option key={n} value={n}>{n} Person{n>1?'s':''}</option>)}
                   </select>
                 </div>
@@ -170,7 +170,7 @@ export default function PackageDetailsPage() {
                 <Input label="Your Name" value={bookingForm.passenger_name} onChange={e => setBookingForm(p => ({...p, passenger_name: e.target.value}))} required />
                 <Input label="Email" type="email" value={bookingForm.passenger_email} onChange={e => setBookingForm(p => ({...p, passenger_email: e.target.value}))} required />
                 <Input label="Phone" type="tel" value={bookingForm.passenger_phone} onChange={e => setBookingForm(p => ({...p, passenger_phone: e.target.value}))} />
-                <textarea value={bookingForm.special_requests} onChange={e => setBookingForm(p => ({...p, special_requests: e.target.value}))} placeholder="Special requests (optional)" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-400" />
+                <textarea value={bookingForm.special_requests} onChange={e => setBookingForm(p => ({...p, special_requests: e.target.value}))} placeholder="Special requests (optional)" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-400" />
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
                   <div className="flex justify-between text-sm font-bold">
                     <span>Total ({bookingForm.num_participants} × ₹{parseFloat(pkg.price_per_person).toLocaleString()})</span>

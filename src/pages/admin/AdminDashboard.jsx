@@ -24,9 +24,9 @@ export default function AdminDashboard() {
 
   const statCards = [
     { label:'Total Users',       value: stats?.totalUsers ?? 0,          icon:Users,     bg:'bg-purple-50',  text:'text-purple-600',  border:'border-purple-100 dark:border-purple-900/40' },
-    { label:'Bus Bookings',      value: stats?.totalBusBookings ?? 0,    icon:Bus,       bg:'bg-violet-50',  text:'text-violet-600',  border:'border-violet-100' },
+    { label:'Bus Bookings',      value: stats?.totalBusBookings ?? 0,    icon:Bus,       bg:'bg-violet-50',  text:'text-violet-600',  border:'border-violet-100 dark:border-violet-900/40' },
     { label:'Tour Bookings',     value: stats?.totalPackageBookings ?? 0,icon:MapPin,    bg:'bg-purple-50',  text:'text-purple-600',  border:'border-purple-100 dark:border-purple-900/40' },
-    { label:'Active Packages',   value: stats?.totalPackages ?? 0,       icon:BookOpen,  bg:'bg-violet-50',  text:'text-violet-600',  border:'border-violet-100' },
+    { label:'Active Packages',   value: stats?.totalPackages ?? 0,       icon:BookOpen,  bg:'bg-violet-50',  text:'text-violet-600',  border:'border-violet-100 dark:border-violet-900/40' },
   ]
 
   return (
@@ -117,9 +117,9 @@ export default function AdminDashboard() {
                 ['Tour Packages',  '✅ Operational'],
                 ['Payments',       '🔵 Simulated Mode'],
               ].map(([label, status]) => (
-                <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
+                <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50 dark:border-gray-800 last:border-0">
                   <span className="text-sm text-gray-600 dark:text-gray-300">{label}</span>
-                  <span className="text-xs font-medium text-gray-700">{status}</span>
+                  <span className="text-xs font-medium text-gray-700 dark:text-gray-400">{status}</span>
                 </div>
               ))}
             </div>
