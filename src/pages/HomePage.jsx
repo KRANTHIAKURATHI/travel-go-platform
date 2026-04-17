@@ -1,29 +1,41 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Bus, MapPin, ArrowRight, Star, Shield,
   Clock, Headphones, ChevronRight, Ticket, Sparkles
 } from 'lucide-react'
+import { packageAPI } from '../services/api'
 
 const CITIES = ['Chennai', 'Bangalore', 'Mumbai', 'Delhi', 'Hyderabad', 'Coimbatore', 'Goa', 'Jaipur', 'Pune', 'Mysore', 'Agra', 'Vijayawada']
 
 const FEATURED_PACKAGES = [
-  { title: 'Kerala Backwaters Bliss', destination: 'Kerala', days: 5, price: 18500, category: 'Beach', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80&auto=format&fit=crop' },
-  { title: 'Rajasthan Royal Heritage', destination: 'Rajasthan', days: 7, price: 28000, category: 'Cultural', img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80&auto=format&fit=crop' },
-  { title: 'Manali Adventure Trek', destination: 'Himachal', days: 6, price: 22000, category: 'Adventure', img: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format&fit=crop' },
-  { title: 'Andaman Island Escape', destination: 'Andaman', days: 6, price: 32000, category: 'Beach', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop' },
+  { id: '7122f80e-c845-47bb-8278-fe36b329fd79', title: 'Kerala Backwaters Bliss', destination: 'Kerala', days: 5, price: 18500, category: 'Beach', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80&auto=format&fit=crop' },
+  { id: '34045061-5b95-4f0f-8d3e-fc2c00907c52', title: 'Rajasthan Royal Heritage', destination: 'Rajasthan', days: 7, price: 28000, category: 'Cultural', img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80&auto=format&fit=crop' },
+  { id: '2b95d830-fa89-4225-88cd-dbb0acd207bc', title: 'Manali Adventure Trek', destination: 'Himachal', days: 6, price: 22000, category: 'Adventure', img: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format&fit=crop' },
+  { id: '2cfaa811-83c7-4647-9de2-270bb9099961', title: 'Andaman Island Escape', destination: 'Andaman', days: 6, price: 32000, category: 'Beach', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop' },
 ]
 
 export default function HomePage() {
   const navigate = useNavigate()
   const [mode, setMode] = useState('bus')
   const [busForm, setBusForm] = useState({ source: '', destination: '', date: '' })
+  const [featuredPackages, setFeaturedPackages] = useState([])
   const today = new Date().toISOString().split('T')[0]
 
-  // FIX: Reset scroll position when HomePage loads
   useEffect(() => {
-    window.scrollTo(0, 0)
+    const fetchPackages = async () => {
+      try {
+        const res = await packageAPI.getAll({ limit: 4 })
+        // Filter featured or just take the first 4 for now
+        const featured = res.data.packages.filter(p => p.is_featured)
+        setFeaturedPackages(featured.length > 0 ? featured : res.data.packages.slice(0, 4))
+      } catch (err) {
+        console.error('Failed to fetch packages:', err)
+      }
+    }
+    fetchPackages()
   }, [])
+
 
   const handleBusSearch = (e) => {
     e.preventDefault()
@@ -32,8 +44,11 @@ export default function HomePage() {
   }
 
   const navigateToPackages = () => {
-    window.scrollTo(0, 0); // Reset scroll before navigation
     navigate('/packages');
+  }
+
+  const navigateToPackageDetails = (id) => {
+    navigate(`/packages/${id}`);
   }
 
   return (
@@ -135,13 +150,13 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {FEATURED_PACKAGES.map((pkg) => (
-            <div key={pkg.title} onClick={navigateToPackages}
+          {(featuredPackages.length > 0 ? featuredPackages : FEATURED_PACKAGES).map((pkg) => (
+            <div key={pkg.id || pkg.title} onClick={() => navigateToPackageDetails(pkg.id)}
               className="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden border border-purple-100 dark:border-purple-900/40 cursor-pointer transition-all duration-500 hover:-translate-y-3"
               style={{ boxShadow: '0 10px 30px rgba(109,40,217,0.04)' }}>
 
               <div className="relative h-56 overflow-hidden bg-purple-50 dark:bg-purple-900/10">
-                <img src={pkg.img} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={pkg.images?.[0] || pkg.img} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                 <div className="absolute top-4 left-4">
                   <span className="bg-white dark:bg-gray-900/95 backdrop-blur text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm text-purple-700">
@@ -158,10 +173,10 @@ export default function HomePage() {
                 <div className="flex items-center justify-between pt-4 border-t border-gray-50 dark:border-gray-800">
                   <div>
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Starting at</div>
-                    <div className="font-black text-purple-600 text-xl">₹{pkg.price.toLocaleString('en-IN')}</div>
+                    <div className="font-black text-purple-600 text-xl">₹{parseFloat(pkg.price_per_person || pkg.price).toLocaleString('en-IN')}</div>
                   </div>
                   <div className="flex items-center gap-1.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 text-[10px] font-black px-3 py-2 rounded-xl">
-                    <Clock size={12} /> {pkg.days}D / {pkg.days - 1}N
+                    <Clock size={12} /> {pkg.duration_days || pkg.days}D / {(pkg.duration_days || pkg.days) - 1}N
                   </div>
                 </div>
               </div>
@@ -179,13 +194,13 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {[['Chennai', 'Bangalore'], ['Delhi', 'Jaipur'], ['Mumbai', 'Pune'], ['Bangalore', 'Goa'], ['Hyderabad', 'Vijayawada'], ['Chennai', 'Hyderabad'], ['Delhi', 'Agra'], ['Mumbai', 'Goa'], ['Chennai', 'Coimbatore'], ['Bangalore', 'Mysore']].map(([s, d]) => (
-              <button key={`${s}-${d}`} onClick={() => navigate(`/buses/results?source=${s}&destination=${d}&date=${today}`)}
-                className="bg-white dark:bg-gray-900 rounded-2xl px-5 py-4 text-left border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all group active:scale-95">
+              <Link key={`${s}-${d}`} to={`/buses/results?source=${s}&destination=${d}&date=${today}`}
+                className="bg-white dark:bg-gray-900 rounded-2xl px-5 py-4 text-left border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all group active:scale-95 block">
                 <div className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter mb-1">From {s}</div>
                 <div className="text-purple-600 font-black text-sm flex items-center gap-2">
                   To {d} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </div>

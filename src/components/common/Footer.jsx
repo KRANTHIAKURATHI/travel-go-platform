@@ -32,8 +32,22 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold text-white mb-4">Popular Routes</h4>
           <ul className="space-y-2 text-sm">
-            {['Chennai → Bangalore', 'Delhi → Jaipur', 'Mumbai → Pune', 'Bangalore → Goa', 'Hyderabad → Vijayawada'].map(r => (
-              <li key={r} className="flex items-center gap-1.5"><MapPin size={11} className="text-purple-400" />{r}</li>
+            {[
+              ['Chennai', 'Bangalore'],
+              ['Delhi', 'Jaipur'],
+              ['Mumbai', 'Pune'],
+              ['Bangalore', 'Goa'],
+              ['Hyderabad', 'Vijayawada']
+            ].map(([s, d]) => (
+              <li key={`${s}-${d}`}>
+                <Link 
+                  to={`/buses/results?source=${s}&destination=${d}&date=${new Date().toISOString().split('T')[0]}`} 
+                  className="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+                >
+                  <MapPin size={11} className="text-purple-400" />
+                  {s} → {d}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
