@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
 let genAI = null;
 
 // Initialize the API only if the key exists to avoid app crashing
@@ -24,7 +23,9 @@ export const generateChatResponse = async (query, pageContext) => {
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+    const model = genAI.getGenerativeModel({
+  model: "gemini-pro",
+  });
 
     const prompt = `
 You are a helpful travel assistant chatbot for a website called "TravelGo".
