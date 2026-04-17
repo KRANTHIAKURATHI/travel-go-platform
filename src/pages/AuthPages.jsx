@@ -34,7 +34,7 @@ export function LoginPage() {
           <p className="text-charcoal-500 mt-1">Sign in to your TravelGo account</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl border border-charcoal-100 p-8">
+        <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-charcoal-100 p-8">
           {error && <div className="mb-4"><Alert type="error" message={error} onClose={() => setError('')} /></div>}
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -93,7 +93,7 @@ export function RegisterPage() {
           <h1 className="font-display text-3xl font-bold text-charcoal-900">Create Account</h1>
           <p className="text-charcoal-500 mt-1">Join millions of happy travelers</p>
         </div>
-        <div className="bg-white rounded-3xl shadow-xl border border-charcoal-100 p-8">
+        <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-charcoal-100 p-8">
           {error && <div className="mb-4"><Alert type="error" message={error} onClose={() => setError('')} /></div>}
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input label="Full Name" placeholder="John Doe" value={form.name} onChange={e => setForm(p => ({...p, name:e.target.value}))} required />

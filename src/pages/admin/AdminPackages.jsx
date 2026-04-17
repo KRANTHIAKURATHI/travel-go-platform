@@ -68,23 +68,23 @@ export default function AdminPackages() {
         {error && !modal && <Alert type="error" message={error} onClose={() => setError('')} />}
 
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-xl font-bold text-gray-900">Tour Packages</h2>
+          <h2 className="font-display text-xl font-bold text-gray-900 dark:text-gray-100">Tour Packages</h2>
           <Button size="sm" onClick={() => open()}><Plus size={14}/> Add Package</Button>
         </div>
 
         {loading ? <LoadingScreen /> : (
-          <div className="bg-white rounded-2xl border border-purple-100 overflow-hidden">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl border border-purple-100 dark:border-purple-900/40 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>{['Title','Destination','Days','Price','Category','Slots','Featured','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">{h}</th>)}</tr>
+                <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                  <tr>{['Title','Destination','Days','Price','Category','Slots','Featured','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {packages.map(pkg => (
-                    <tr key={pkg.id} className={`hover:bg-gray-50 transition-colors ${!pkg.is_active ? 'opacity-50' : ''}`}>
-                      <td className="px-4 py-3 font-medium text-gray-900 max-w-[180px] truncate">{pkg.title}</td>
-                      <td className="px-4 py-3 text-gray-600">{pkg.destination}</td>
-                      <td className="px-4 py-3 text-gray-600">{pkg.duration_days}d</td>
+                    <tr key={pkg.id} className={`hover:bg-gray-50 dark:bg-gray-800 transition-colors ${!pkg.is_active ? 'opacity-50' : ''}`}>
+                      <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100 max-w-[180px] truncate">{pkg.title}</td>
+                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{pkg.destination}</td>
+                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{pkg.duration_days}d</td>
                       <td className="px-4 py-3 font-semibold text-purple-600">₹{parseFloat(pkg.price_per_person || 0).toLocaleString()}</td>
                       <td className="px-4 py-3"><Badge color="ocean">{pkg.category}</Badge></td>
                       <td className="px-4 py-3"><span className={pkg.available_slots < 5 ? 'text-red-500 font-semibold' : 'text-green-600 font-semibold'}>{pkg.available_slots}</span></td>
@@ -107,10 +107,10 @@ export default function AdminPackages() {
 
       {modal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-5 border-b border-purple-100 sticky top-0 bg-white z-10">
-              <h3 className="font-semibold text-gray-900">{modal.edit ? 'Edit Package' : 'Add Tour Package'}</h3>
-              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600"><X size={20}/></button>
+          <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-5 border-b border-purple-100 dark:border-purple-900/40 sticky top-0 bg-white dark:bg-gray-900 z-10">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">{modal.edit ? 'Edit Package' : 'Add Tour Package'}</h3>
+              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600 dark:text-gray-300"><X size={20}/></button>
             </div>
             <form onSubmit={save} className="p-5 space-y-4">
               {error && <Alert type="error" message={error} />}
@@ -118,7 +118,7 @@ export default function AdminPackages() {
               <Input label="Destination" value={form.destination} onChange={e => setForm(p=>({...p,destination:e.target.value}))} required />
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <textarea value={form.description} onChange={e => setForm(p=>({...p,description:e.target.value}))} rows={3} className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <Input label="Duration (days)" type="number" value={form.duration_days} onChange={e => setForm(p=>({...p,duration_days:e.target.value}))} required />
@@ -148,11 +148,11 @@ export default function AdminPackages() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Inclusions (one per line)</label>
-                <textarea value={form.inclusions} onChange={e => setForm(p=>({...p,inclusions:e.target.value}))} rows={3} placeholder="Hotel stay&#10;All meals&#10;Guide" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <textarea value={form.inclusions} onChange={e => setForm(p=>({...p,inclusions:e.target.value}))} rows={3} placeholder="Hotel stay&#10;All meals&#10;Guide" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Exclusions (one per line)</label>
-                <textarea value={form.exclusions} onChange={e => setForm(p=>({...p,exclusions:e.target.value}))} rows={2} placeholder="Flight tickets&#10;Personal expenses" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
+                <textarea value={form.exclusions} onChange={e => setForm(p=>({...p,exclusions:e.target.value}))} rows={2} placeholder="Flight tickets&#10;Personal expenses" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-saffron-300" />
               </div>
               <div className="flex gap-3 pt-2">
                 <Button variant="secondary" className="flex-1" type="button" onClick={() => setModal(null)}>Cancel</Button>

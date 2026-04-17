@@ -107,15 +107,15 @@ export default function LoginPage() {
               style={{ background: 'linear-gradient(135deg,#7c3aed,#a855f7)' }}>
               <Ticket size={28} className="text-white" />
             </div>
-            <h1 className="font-display text-2xl font-bold text-gray-900">TravelGo</h1>
+            <h1 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100">TravelGo</h1>
           </div>
 
           <div className="text-center mb-8">
-            <h1 className="font-display text-3xl font-bold text-gray-900">Welcome Back</h1>
-            <p className="text-gray-500 mt-1 text-sm">Sign in to continue your journey</p>
+            <h1 className="font-display text-3xl font-bold text-gray-900 dark:text-gray-100">Welcome Back</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm">Sign in to continue your journey</p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-2xl border border-purple-100 p-8"
+          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-purple-100 dark:border-purple-900/40 p-8"
             style={{ boxShadow: '0 20px 60px rgba(109,40,217,0.12)' }}>
             {error && (
               <div className="mb-5">
@@ -137,9 +137,9 @@ export default function LoginPage() {
 
             {/* Divider */}
             <div className="flex items-center gap-3 my-5">
-              <hr className="flex-1 border-gray-200" />
+              <hr className="flex-1 border-gray-200 dark:border-gray-700" />
               <span className="text-xs text-gray-400 font-medium px-1">or continue with email</span>
-              <hr className="flex-1 border-gray-200" />
+              <hr className="flex-1 border-gray-200 dark:border-gray-700" />
             </div>
 
             {/* Email form */}
@@ -161,7 +161,7 @@ export default function LoginPage() {
                     value={form.password}
                     onChange={e => setForm(p => ({...p, password: e.target.value}))}
                     required
-                    className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 text-sm transition-all"
+                    className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 text-sm transition-all"
                   />
                   <button type="button" onClick={() => setShow(!show)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-colors">
@@ -191,7 +191,7 @@ export default function LoginPage() {
               </p>
             </div> */}
 
-            <p className="text-center text-sm text-gray-500 mt-5">
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-5">
               New to TravelGo?{' '}
               <Link to="/register" className="text-purple-600 font-bold hover:text-purple-700 transition-colors">
                 Create free account

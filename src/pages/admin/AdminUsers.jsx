@@ -27,7 +27,7 @@ export default function AdminUsers() {
         {error && <Alert type="error" message={error} />}
 
         <div className="flex items-center justify-between gap-4">
-          <h2 className="font-display text-xl font-bold text-gray-900">
+          <h2 className="font-display text-xl font-bold text-gray-900 dark:text-gray-100">
             Users <span className="text-gray-400 font-normal text-base">({users.length})</span>
           </h2>
           <div className="relative">
@@ -36,35 +36,35 @@ export default function AdminUsers() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search users..."
-              className="pl-9 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-saffron-300 w-60"
+              className="pl-9 pr-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-saffron-300 w-60"
             />
           </div>
         </div>
 
         {loading ? <LoadingScreen /> : (
-          <div className="bg-white rounded-2xl border border-purple-100 overflow-hidden">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl border border-purple-100 dark:border-purple-900/40 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
+                <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                   <tr>
                     {['Name', 'Email', 'Phone', 'Role', 'Joined'].map(h => (
-                      <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">{h}</th>
+                      <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {filtered.map(u => (
-                    <tr key={u.id} className="hover:bg-gray-50 transition-colors">
+                    <tr key={u.id} className="hover:bg-gray-50 dark:bg-gray-800 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
                             {u.name?.[0]?.toUpperCase()}
                           </div>
-                          <span className="font-medium text-gray-900">{u.name}</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">{u.name}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{u.email}</td>
-                      <td className="px-4 py-3 text-gray-500">{u.phone || '—'}</td>
+                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{u.email}</td>
+                      <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{u.phone || '—'}</td>
                       <td className="px-4 py-3">
                         <Badge color={u.role === 'admin' ? 'saffron' : 'ocean'}>{u.role}</Badge>
                       </td>

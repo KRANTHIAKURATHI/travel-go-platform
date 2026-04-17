@@ -61,31 +61,31 @@ export default function HomePage() {
           {/* Mode toggle */}
           <div className="max-w-3xl mx-auto">
             <div className="flex gap-1 bg-black/20 backdrop-blur-xl rounded-2xl p-1.5 mb-6 w-fit mx-auto border border-white/10 shadow-2xl">
-              <button onClick={() => setMode('bus')} className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mode==='bus' ? 'bg-white text-purple-900 shadow-xl scale-105' : 'text-white hover:bg-white/10'}`}>
+              <button onClick={() => setMode('bus')} className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mode==='bus' ? 'bg-white dark:bg-gray-900 text-purple-900 shadow-xl scale-105' : 'text-white hover:bg-white dark:bg-gray-900/10'}`}>
                 <Bus size={18} /> Bus Tickets
               </button>
-              <button onClick={() => setMode('tour')} className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mode==='tour' ? 'bg-white text-purple-900 shadow-xl scale-105' : 'text-white hover:bg-white/10'}`}>
+              <button onClick={() => setMode('tour')} className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mode==='tour' ? 'bg-white dark:bg-gray-900 text-purple-900 shadow-xl scale-105' : 'text-white hover:bg-white dark:bg-gray-900/10'}`}>
                 <MapPin size={18} /> Tour Packages
               </button>
             </div>
 
             {mode === 'bus' ? (
-              <form onSubmit={handleBusSearch} className="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 border border-purple-100 transition-all duration-500">
+              <form onSubmit={handleBusSearch} className="bg-white dark:bg-gray-900 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 border border-purple-100 dark:border-purple-900/40 transition-all duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[['From','source'],['To','destination']].map(([lbl,key]) => (
                     <div key={key}>
-                      <label className="block text-xs font-bold text-purple-900/40 uppercase tracking-widest mb-2 px-1">{lbl}</label>
+                      <label className="block text-xs font-bold text-purple-900/40 dark:text-white/60 uppercase tracking-widest mb-2 px-1">{lbl}</label>
                       <select value={busForm[key]} onChange={e => setBusForm(p=>({...p,[key]:e.target.value}))} required
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-gray-50 focus:border-purple-400 focus:outline-none focus:ring-4 focus:ring-purple-100 text-sm bg-gray-50 text-gray-800 transition-all font-medium appearance-none">
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-gray-50 focus:border-purple-400 focus:outline-none focus:ring-4 focus:ring-purple-100 text-sm bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-all font-medium appearance-none">
                         <option value="">Select City</option>
                         {CITIES.map(c => <option key={c}>{c}</option>)}
                       </select>
                     </div>
                   ))}
                   <div>
-                    <label className="block text-xs font-bold text-purple-900/40 uppercase tracking-widest mb-2 px-1">Journey Date</label>
+                    <label className="block text-xs font-bold text-purple-900/40 dark:text-white/60 uppercase tracking-widest mb-2 px-1">Journey Date</label>
                     <input type="date" min={today} value={busForm.date} onChange={e => setBusForm(p=>({...p,date:e.target.value}))} required
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-50 focus:border-purple-400 focus:outline-none focus:ring-4 focus:ring-purple-100 text-sm bg-gray-50 text-gray-800 transition-all font-medium" />
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-50 focus:border-purple-400 focus:outline-none focus:ring-4 focus:ring-purple-100 text-sm bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-all font-medium" />
                   </div>
                 </div>
                 <button type="submit" className="mt-8 w-full py-4.5 rounded-2xl font-black text-white flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 text-base shadow-[0_10px_20px_rgba(124,58,237,0.3)]" style={{ background:'linear-gradient(135deg,#7c3aed,#6d28d9)' }}>
@@ -93,11 +93,11 @@ export default function HomePage() {
                 </button>
               </form>
             ) : (
-              <div className="bg-white rounded-[2rem] shadow-2xl p-10 text-center border border-purple-100 animate-in zoom-in-95 duration-300">
-                <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-white dark:bg-gray-900 rounded-[2rem] shadow-2xl p-10 text-center border border-purple-100 dark:border-purple-900/40 animate-in zoom-in-95 duration-300">
+                <div className="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Ticket size={32} className="text-purple-600" />
                 </div>
-                <p className="text-gray-600 mb-6 font-semibold text-lg">Discover exclusive, handcrafted tour experiences</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 font-semibold text-lg">Discover exclusive, handcrafted tour experiences</p>
                 <button onClick={navigateToPackages} className="py-4 px-10 rounded-2xl font-black text-white flex items-center gap-3 mx-auto transition-all hover:scale-105 shadow-xl" style={{ background:'linear-gradient(135deg,#7c3aed,#6d28d9)' }}>
                   Explore All Packages <ArrowRight size={20} />
                 </button>
@@ -108,7 +108,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Stats ── */}
-      <div className="bg-white border-b border-purple-50">
+      <div className="bg-white dark:bg-gray-900 border-b border-purple-50">
         <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[['2.5M+','Travelers'],['800+','Daily Routes'],['150+','Tour Deals'],['24/7','Live Help']].map(([val,label]) => (
             <div key={label} className="group">
@@ -126,9 +126,9 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 text-purple-600 text-xs font-black uppercase tracking-[0.2em] mb-3">
               <div className="w-8 h-[2px] bg-purple-600" /> Handpicked Tours
             </div>
-            <h2 className="font-display text-4xl font-black text-gray-900 tracking-tight">Featured Destinations</h2>
+            <h2 className="font-display text-4xl font-black text-gray-900 dark:text-gray-100 tracking-tight">Featured Destinations</h2>
           </div>
-          <button onClick={navigateToPackages} className="group flex items-center gap-2 text-sm font-bold text-purple-600 bg-purple-50 px-5 py-2.5 rounded-full hover:bg-purple-600 hover:text-white transition-all">
+          <button onClick={navigateToPackages} className="group flex items-center gap-2 text-sm font-bold text-purple-600 bg-purple-50 dark:bg-purple-900/20 px-5 py-2.5 rounded-full hover:bg-purple-600 hover:text-white transition-all">
             View All <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -136,14 +136,14 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {FEATURED_PACKAGES.map((pkg) => (
             <div key={pkg.title} onClick={navigateToPackages}
-              className="group bg-white rounded-3xl overflow-hidden border border-purple-100 cursor-pointer transition-all duration-500 hover:-translate-y-3"
+              className="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden border border-purple-100 dark:border-purple-900/40 cursor-pointer transition-all duration-500 hover:-translate-y-3"
               style={{ boxShadow:'0 10px 30px rgba(109,40,217,0.04)' }}>
 
               <div className="relative h-56 overflow-hidden bg-purple-50">
                 <img src={pkg.img} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/95 backdrop-blur text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm text-purple-700">
+                  <span className="bg-white dark:bg-gray-900/95 backdrop-blur text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm text-purple-700">
                     {pkg.category}
                   </span>
                 </div>
@@ -153,13 +153,13 @@ export default function HomePage() {
               </div>
 
               <div className="p-6">
-                <h3 className="font-bold text-gray-900 text-base leading-tight mb-4 line-clamp-2 h-10 group-hover:text-purple-700 transition-colors">{pkg.title}</h3>
+                <h3 className="font-bold text-gray-900 dark:text-gray-100 text-base leading-tight mb-4 line-clamp-2 h-10 group-hover:text-purple-700 transition-colors">{pkg.title}</h3>
                 <div className="flex items-center justify-between pt-4 border-t border-gray-50">
                   <div>
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Starting at</div>
                     <div className="font-black text-purple-600 text-xl">₹{pkg.price.toLocaleString('en-IN')}</div>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-purple-50 text-purple-700 text-[10px] font-black px-3 py-2 rounded-xl">
+                  <div className="flex items-center gap-1.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 text-[10px] font-black px-3 py-2 rounded-xl">
                     <Clock size={12} /> {pkg.days}D / {pkg.days-1}N
                   </div>
                 </div>
@@ -170,17 +170,17 @@ export default function HomePage() {
       </section>
 
       {/* ── Popular Routes ── */}
-      <section className="bg-gray-50 py-20 border-y border-gray-100">
+      <section className="bg-gray-50 dark:bg-gray-800 py-20 border-y border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10">
-             <h2 className="font-display text-3xl font-black text-gray-900">Popular Bus Routes</h2>
-             <p className="text-gray-500 font-medium mt-1">Direct connections at the most affordable prices</p>
+             <h2 className="font-display text-3xl font-black text-gray-900 dark:text-gray-100">Popular Bus Routes</h2>
+             <p className="text-gray-500 dark:text-gray-400 font-medium mt-1">Direct connections at the most affordable prices</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {[['Chennai','Bangalore'],['Delhi','Jaipur'],['Mumbai','Pune'],['Bangalore','Goa'],['Hyderabad','Vijayawada'],['Chennai','Hyderabad'],['Delhi','Agra'],['Mumbai','Goa'],['Chennai','Coimbatore'],['Bangalore','Mysore']].map(([s,d]) => (
               <button key={`${s}-${d}`} onClick={() => navigate(`/buses/results?source=${s}&destination=${d}&date=${today}`)}
-                className="bg-white rounded-2xl px-5 py-4 text-left border border-white shadow-sm hover:shadow-xl hover:border-purple-200 transition-all group active:scale-95">
-                <div className="text-xs font-bold text-gray-500 uppercase tracking-tighter mb-1">From {s}</div>
+                className="bg-white dark:bg-gray-900 rounded-2xl px-5 py-4 text-left border border-white shadow-sm hover:shadow-xl hover:border-purple-200 transition-all group active:scale-95">
+                <div className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter mb-1">From {s}</div>
                 <div className="text-purple-600 font-black text-sm flex items-center gap-2">
                   To {d} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -193,8 +193,8 @@ export default function HomePage() {
       {/* ── Why us ── */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-black text-gray-900">Why TravelGo?</h2>
-          <p className="text-gray-500 mt-3 font-medium max-w-lg mx-auto">Experience the standard of travel that millions of users rely on every single day.</p>
+          <h2 className="font-display text-4xl font-black text-gray-900 dark:text-gray-100">Why TravelGo?</h2>
+          <p className="text-gray-500 dark:text-gray-400 mt-3 font-medium max-w-lg mx-auto">Experience the standard of travel that millions of users rely on every single day.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
@@ -203,12 +203,12 @@ export default function HomePage() {
             [Star,       'Price Match',     'Found it cheaper? We will match the price, no questions.'],
             [Headphones, 'Human Help',      'Talk to real travel experts 24/7, not just robots.'],
           ].map(([Icon, title, desc]) => (
-            <div key={title} className="group p-8 bg-white rounded-[2.5rem] border border-gray-100 hover:border-purple-200 hover:shadow-2xl transition-all duration-500">
-              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors">
+            <div key={title} className="group p-8 bg-white dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 hover:border-purple-200 hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors">
                 <Icon size={28} className="text-purple-600 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="font-black text-gray-900 mb-3 text-lg tracking-tight">{title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-medium">{desc}</p>
+              <h3 className="font-black text-gray-900 dark:text-gray-100 mb-3 text-lg tracking-tight">{title}</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium">{desc}</p>
             </div>
           ))}
         </div>

@@ -69,7 +69,7 @@ export default function AdminBuses() {
         {error && !modal && <Alert type="error" message={error} onClose={() => setError('')} />}
 
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-xl font-bold text-gray-900">Bus Management</h2>
+          <h2 className="font-display text-xl font-bold text-gray-900 dark:text-gray-100">Bus Management</h2>
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" onClick={() => { setModal({ type:'route' }); setRouteForm({ source:'', destination:'', distance_km:'', estimated_duration_minutes:'' }); setError('') }}>
               <Plus size={14}/> Add Route
@@ -81,24 +81,24 @@ export default function AdminBuses() {
         </div>
 
         {loading ? <LoadingScreen /> : (
-          <div className="bg-white rounded-2xl border border-purple-100 overflow-hidden">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl border border-purple-100 dark:border-purple-900/40 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>{['Bus Name','Number','Type','Route','Departure','Price','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">{h}</th>)}</tr>
+                <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                  <tr>{['Bus Name','Number','Type','Route','Departure','Price','Action'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{h}</th>)}</tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {buses.map(bus => (
-                    <tr key={bus.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-4 py-3 font-medium text-gray-900">{bus.bus_name}</td>
-                      <td className="px-4 py-3 text-gray-500 font-mono text-xs">{bus.bus_number}</td>
+                    <tr key={bus.id} className="hover:bg-gray-50 dark:bg-gray-800 transition-colors">
+                      <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">{bus.bus_name}</td>
+                      <td className="px-4 py-3 text-gray-500 dark:text-gray-400 font-mono text-xs">{bus.bus_number}</td>
                       <td className="px-4 py-3"><Badge color="ocean">{bus.bus_type}</Badge></td>
-                      <td className="px-4 py-3 text-gray-600">{bus.routes?.source} → {bus.routes?.destination}</td>
-                      <td className="px-4 py-3 text-gray-500">{bus.departure_time ? format(new Date(bus.departure_time), 'dd MMM, HH:mm') : '-'}</td>
+                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{bus.routes?.source} → {bus.routes?.destination}</td>
+                      <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{bus.departure_time ? format(new Date(bus.departure_time), 'dd MMM, HH:mm') : '-'}</td>
                       <td className="px-4 py-3 font-semibold text-purple-600">₹{parseFloat(bus.price_per_seat || 0).toLocaleString()}</td>
                       <td className="px-4 py-3">
                         <div className="flex gap-1">
-                          <button onClick={() => openBusModal(bus)} className="p-1.5 rounded-lg hover:bg-purple-50 text-purple-500 transition-colors"><Pencil size={14}/></button>
+                          <button onClick={() => openBusModal(bus)} className="p-1.5 rounded-lg hover:bg-purple-50 dark:bg-purple-900/20 text-purple-500 transition-colors"><Pencil size={14}/></button>
                           <button onClick={() => deleteBus(bus.id)} className="p-1.5 rounded-lg hover:bg-rose-50 text-rose-400 transition-colors"><Trash2 size={14}/></button>
                         </div>
                       </td>
@@ -113,10 +113,10 @@ export default function AdminBuses() {
 
         {/* Routes list */}
         <div>
-          <h3 className="font-semibold text-gray-800 mb-3">Available Routes ({routes.length})</h3>
+          <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">Available Routes ({routes.length})</h3>
           <div className="flex flex-wrap gap-2">
             {routes.map(r => (
-              <span key={r.id} className="bg-white border border-gray-200 text-sm px-3 py-1.5 rounded-full text-gray-600">
+              <span key={r.id} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-sm px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-300">
                 {r.source} → {r.destination} {r.distance_km ? `(${r.distance_km}km)` : ''}
               </span>
             ))}
@@ -127,10 +127,10 @@ export default function AdminBuses() {
       {/* Bus Modal */}
       {modal?.type === 'bus' && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-5 border-b border-purple-100">
-              <h3 className="font-semibold text-gray-900">{modal.edit ? 'Edit Bus' : 'Add New Bus'}</h3>
-              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600"><X size={20}/></button>
+          <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-5 border-b border-purple-100 dark:border-purple-900/40">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">{modal.edit ? 'Edit Bus' : 'Add New Bus'}</h3>
+              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600 dark:text-gray-300"><X size={20}/></button>
             </div>
             <form onSubmit={saveBus} className="p-5 space-y-4">
               {error && <Alert type="error" message={error} />}
@@ -168,10 +168,10 @@ export default function AdminBuses() {
       {/* Route Modal */}
       {modal?.type === 'route' && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl">
-            <div className="flex items-center justify-between p-5 border-b border-purple-100">
-              <h3 className="font-semibold text-gray-900">Add New Route</h3>
-              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600"><X size={20}/></button>
+          <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-md shadow-2xl">
+            <div className="flex items-center justify-between p-5 border-b border-purple-100 dark:border-purple-900/40">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">Add New Route</h3>
+              <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-600 dark:text-gray-300"><X size={20}/></button>
             </div>
             <form onSubmit={saveRoute} className="p-5 space-y-4">
               {error && <Alert type="error" message={error} />}

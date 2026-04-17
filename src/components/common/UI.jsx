@@ -21,7 +21,7 @@ export function Alert({ type = 'error', message, onClose }) {
   const styles = {
     error:   'bg-rose-50 border-rose-200 text-rose-700',
     success: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-    info:    'bg-purple-50 border-purple-200 text-purple-700',
+    info:    'bg-purple-50 dark:bg-purple-900/20 border-purple-200 text-purple-700',
   }
   const Icon = type === 'success' ? CheckCircle : AlertCircle
   return (
@@ -39,7 +39,7 @@ export function Badge({ children, color = 'purple' }) {
     violet:  'bg-violet-100 text-violet-700',
     green:   'bg-emerald-100 text-emerald-700',
     red:     'bg-rose-100 text-rose-700',
-    gray:    'bg-gray-100 text-gray-600',
+    gray:    'bg-gray-100 text-gray-600 dark:text-gray-300',
     amber:   'bg-amber-100 text-amber-700',
   }
   return <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${colors[color] || colors.purple}`}>{children}</span>
@@ -48,7 +48,7 @@ export function Badge({ children, color = 'purple' }) {
 export function Button({ children, variant = 'primary', size = 'md', loading, className = '', ...props }) {
   const variants = {
     primary:   'bg-purple-600 hover:bg-purple-700 text-white shadow-purple',
-    secondary: 'bg-white hover:bg-gray-50 text-gray-800 border border-gray-200',
+    secondary: 'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700',
     violet:    'bg-violet-600 hover:bg-violet-700 text-white',
     ghost:     'text-purple-600 hover:bg-purple-50',
     danger:    'bg-rose-500 hover:bg-rose-600 text-white',
@@ -66,8 +66,8 @@ export function Button({ children, variant = 'primary', size = 'md', loading, cl
 export function Input({ label, error, className = '', ...props }) {
   return (
     <div className="space-y-1">
-      {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
-      <input className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-rose-400 bg-rose-50' : 'border-gray-200 bg-white'} focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition text-gray-800 placeholder:text-gray-400 text-sm ${className}`} {...props} />
+      {label && <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>}
+      <input className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-rose-400 bg-rose-50' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900'} focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition text-gray-800 dark:text-gray-200 placeholder:text-gray-400 dark:[color-scheme:dark] text-sm ${className}`} {...props} />
       {error && <p className="text-xs text-rose-500">{error}</p>}
     </div>
   )
@@ -76,8 +76,8 @@ export function Input({ label, error, className = '', ...props }) {
 export function Select({ label, error, children, className = '', ...props }) {
   return (
     <div className="space-y-1">
-      {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
-      <select className={`w-full px-4 py-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-800 text-sm ${className}`} {...props}>
+      {label && <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>}
+      <select className={`w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-800 dark:text-gray-200 text-sm ${className}`} {...props}>
         {children}
       </select>
       {error && <p className="text-xs text-rose-500">{error}</p>}
@@ -86,7 +86,7 @@ export function Select({ label, error, children, className = '', ...props }) {
 }
 
 export function Card({ children, className = '', ...props }) {
-  return <div className={`bg-white rounded-2xl shadow-card border border-gray-100 ${className}`} {...props}>{children}</div>
+  return <div className={`bg-white dark:bg-gray-900 rounded-2xl shadow-card border border-gray-100 dark:border-gray-800 ${className}`} {...props}>{children}</div>
 }
 
 export function StatusBadge({ status }) {

@@ -24,7 +24,7 @@ export default function AdminLayout({ children, title }) {
         {/* Logo */}
         <div className="p-5 border-b border-purple-400/20">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center border border-white/20">
+            <div className="w-9 h-9 rounded-xl bg-white dark:bg-gray-900/15 flex items-center justify-center border border-white/20">
               <Ticket size={18} className="text-white" />
             </div>
             <div>
@@ -51,7 +51,7 @@ export default function AdminLayout({ children, title }) {
         <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
           <p className="text-purple-400 text-xs font-semibold uppercase tracking-wider px-3 py-2">Navigation</p>
           {NAV.map(({ to, icon:Icon, label, exact }) => (
-            <Link key={to} to={to} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive(to,exact) ? 'bg-white/20 text-white shadow-sm border border-white/10' : 'text-purple-200 hover:bg-white/10 hover:text-white'}`}>
+            <Link key={to} to={to} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive(to,exact) ? 'bg-white dark:bg-gray-900/20 text-white shadow-sm border border-white/10' : 'text-purple-200 hover:bg-white dark:bg-gray-900/10 hover:text-white'}`}>
               <Icon size={16} /> {label}
             </Link>
           ))}
@@ -59,7 +59,7 @@ export default function AdminLayout({ children, title }) {
 
         {/* Footer */}
         <div className="p-3 border-t border-purple-400/20">
-          <button onClick={() => { logout(); navigate('/') }} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-200 hover:bg-white/10 hover:text-white transition-all">
+          <button onClick={() => { logout(); navigate('/') }} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-purple-200 hover:bg-white dark:bg-gray-900/10 hover:text-white transition-all">
             <LogOut size={16} /> Sign Out
           </button>
         </div>
@@ -67,11 +67,11 @@ export default function AdminLayout({ children, title }) {
 
       {/* Main content */}
       <div className="flex-1 min-w-0 flex flex-col">
-        <header className="bg-white border-b border-purple-100 px-6 py-4 flex items-center justify-between shadow-sm">
+        <header className="bg-white dark:bg-gray-900 border-b border-purple-100 dark:border-purple-900/40 px-6 py-4 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-2 text-sm">
             <span className="text-gray-400">Admin</span>
             <ChevronRight size={14} className="text-gray-300" />
-            <span className="font-semibold text-gray-800">{title}</span>
+            <span className="font-semibold text-gray-800 dark:text-gray-200">{title}</span>
           </div>
           <Link to="/" className="text-xs text-purple-600 hover:text-purple-700 font-medium">← Back to Site</Link>
         </header>

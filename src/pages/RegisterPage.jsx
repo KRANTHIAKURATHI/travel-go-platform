@@ -81,11 +81,11 @@ export default function RegisterPage() {
               style={{ background: 'linear-gradient(135deg,#7c3aed,#a855f7)' }}>
               <Ticket size={28} className="text-white" />
             </div>
-            <h1 className="font-display text-3xl font-bold text-gray-900">Create Account</h1>
-            <p className="text-gray-500 mt-1 text-sm">Join millions of happy travelers today</p>
+            <h1 className="font-display text-3xl font-bold text-gray-900 dark:text-gray-100">Create Account</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm">Join millions of happy travelers today</p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-2xl border border-purple-100 p-8"
+          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-purple-100 dark:border-purple-900/40 p-8"
             style={{ boxShadow: '0 20px 60px rgba(109,40,217,0.12)' }}>
             {error && <div className="mb-5"><Alert type="error" message={error} onClose={() => setError('')} /></div>}
 
@@ -99,9 +99,9 @@ export default function RegisterPage() {
             </button>
 
             <div className="flex items-center gap-3 my-5">
-              <hr className="flex-1 border-gray-200" />
+              <hr className="flex-1 border-gray-200 dark:border-gray-700" />
               <span className="text-xs text-gray-400 font-medium px-1">or register with email</span>
-              <hr className="flex-1 border-gray-200" />
+              <hr className="flex-1 border-gray-200 dark:border-gray-700" />
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -120,7 +120,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <p className="text-center text-sm text-gray-500 mt-5">
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-5">
               Already have an account?{' '}
               <Link to="/login" className="text-purple-600 font-bold hover:text-purple-700 transition-colors">Sign in</Link>
             </p>
